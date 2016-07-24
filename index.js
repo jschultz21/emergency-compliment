@@ -23,7 +23,7 @@ app.get("/", function(req, res){
 
 app.get("/:name/new", function(req, res){
   var randomColor = colors.getRandomColor();
-  res.render("new", {color: randomColor});
+  res.render("new", {color: randomColor, name: req.params.name});
 });
 
 app.get("/:name", function(req, res){
@@ -33,23 +33,15 @@ app.get("/:name", function(req, res){
 });
 
 
-// app.post("/:name/new", function(req, res){
-//   var randomColor = colors.getRandomColor();
-//
-//   res.render("index",{
-//     new_compliment:req.body.player_name, color:randomColor
-//   })
-// })
-
 app.post("/", function(req, res){
   var name = req.body.player_name;
   res.redirect('/' + name);
 });
 
 
-
 app.post("/:name/new", function(req, res){
-  compliments.push(req.body.new_compliment);
-  var name = req.params.name;
+  // compliments.push(req.body.newCompliment);
+  var name = req.params.name
+  var randomColor = colors.getRandomColor();
   res.redirect('/' + name);
 });

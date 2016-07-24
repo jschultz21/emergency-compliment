@@ -6,8 +6,15 @@
 
 <form action="/{{name}}/new" method="post">
 <h1> Hey girl, </h1>
-  <textarea rows="7" cols="30" style='font-size: 20px;' id="new_compliment" type="text" name="new_compliment"></textarea><br>
+  <textarea rows="7" cols="30" style='font-size: 20px;' type="text" name="newCompliment"></textarea><br>
   <input type="submit">
 </form>
 
+
+
+  {{#if name}}
+  <a href="/{{name}}">home</a><br>
+{{else}}
 <a href="/">home</a><br>
+{{/if}}
+</body>

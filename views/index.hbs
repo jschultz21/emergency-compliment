@@ -6,7 +6,6 @@
 
 <img src='RG.jpeg'>
 
-
 {{#if name}}
 <h1>Hey {{name}}, {{compliment}} </h1>
 {{else}}
@@ -21,4 +20,6 @@
 
 
 <a href="/">regenerate</a><br>
+{{#if name}}
 <a href="/{{name}}/new">submit new RG</a>
+{{/if}}
