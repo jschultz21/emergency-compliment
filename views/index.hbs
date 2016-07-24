@@ -1,5 +1,5 @@
 <style>
-  * {
+  body {
     background-color: {{color}};
   }
 </style>
@@ -13,5 +13,12 @@
 <h1>Hey girl, {{compliment}}</h1>
 {{/if}}
 
+<form action="/" method="post">
+  <label for="player_name">Hey girl, what's your name?</label><br>
+  <input id="player_name" type="text" name="player_name">
+  <input type="submit">
+</form>
+
+
 <a href="/">regenerate</a><br>
-<a href="/new">submit new RG</a>
+<a href="/{{name}}/new">submit new RG</a>
