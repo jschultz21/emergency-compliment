@@ -1,10 +1,12 @@
 *{
   font-family: helvetica;
   font-weight:bold;
+  font-size:18px;
 
 }
 body {
   text-align: center;
+  padding: 80px;
 }
 
 h1{
@@ -17,11 +19,10 @@ textarea{
 
 
 img {
-  border-radius: 70%;
+  border-radius: 100%;
   border: 8px solid white;
-  width: 400px;
+  width: 350px;
 }
-
 
 a{
   font-size:25px;

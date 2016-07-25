@@ -1,35 +1,54 @@
 var express = require("express");
-var app = express();
-var compliments = require("./compliment.js");
-var colors = require("./color.js");
 var bodyParser = require("body-parser");
+var mongoose = require("./db/connection");
 
-app.use(bodyParser.json()); //handles json post requests
+var app = express();
+
+// var compliments = require("./compliment.js");
+var colors = require("./color.js");
+
+var Compliment = mongoose.model("Compliment");
+
+app.set("port", process.env.PORT || 4000);
+app.set("view engine", "hbs");
+// app.engine(".hbs", hbs({
+//   extname:        ".hbs",
+//   partialsDir:    "views/",
+//   layoutsDir:     "views/",
+//   defaultLayout:  "layout-main"
+// }));
+
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true })); // handles form submissions
 
-app.set("view engine", "hbs");
-app.use(express.static("public"));
 
-app.listen(4000, function(){
-  console.log("app listening on port 4000");
-});
+// app.use(bodyParser.json()); //handles json post requests
 
+function getRandomCompliment(compliments){
+  var randomIndex = Math.floor((Math.random() * compliments.length));
+  var randomInstance = compliments[randomIndex];
+  return randomInstance.body;
+}
 
 app.get("/", function(req, res){
-  var randomCompliment = compliments.getRandomCompliment();
-  var randomColor = colors.getRandomColor();
-  res.render("index", {compliment: randomCompliment, color: randomColor});
+  Compliment.find({}).then(function(compliments){
+    var randomCompliment = getRandomCompliment(compliments);
+    var randomColor = colors.getRandomColor();
+    res.render("index", {compliment: randomCompliment, color: randomColor});
+  });
+});
+
+app.get("/:name", function(req, res){
+  Compliment.find({}).then(function(compliments){
+    var randomCompliment = getRandomCompliment(compliments);
+    var randomColor = colors.getRandomColor();
+    res.render("index", {compliment: randomCompliment, color: randomColor, name: req.params.name});
+  });
 });
 
 app.get("/:name/new", function(req, res){
   var randomColor = colors.getRandomColor();
   res.render("new", {color: randomColor, name: req.params.name});
-});
-
-app.get("/:name", function(req, res){
-  var randomCompliment = compliments.getRandomCompliment();
-  var randomColor = colors.getRandomColor();
-  res.render("index", {compliment: randomCompliment, color: randomColor, name: req.params.name});
 });
 
 
@@ -39,9 +58,29 @@ app.post("/", function(req, res){
 });
 
 
-app.post("/:name/new", function(req, res){
-  // compliments.push(req.body.newCompliment);
-  var name = req.params.name
+app.post("/:name", function(req, res){
+  var name = req.params.name;
+
   var randomColor = colors.getRandomColor();
-  res.redirect('/' + name);
+  Compliment.create(req.body.compliment).then(function(compliment){
+
+    res.redirect('/' + req.params.name);
+
+  })
+
+});
+
+
+//
+// ***
+// app.post("/candidates", function(req, res){
+//   Candidate.create(req.body.candidate).then(function(candidate){
+//     res.redirect("/candidates/" + candidate.name);
+//   });
+// });
+// ***
+
+
+app.listen(app.get("port"), function(){
+  console.log("we live, son.");
 });
