@@ -7,5 +7,11 @@ var ComplimentSchema = new mongoose.Schema(
 );
 
 mongoose.model("Compliment", ComplimentSchema);
-mongoose.connect("mongodb://localhost/emergency-compliment")
 module.exports = mongoose;
+
+
+if(process.env.NODE_ENV == "production"){
+  mongoose.connect(process.env.MONGOLAB_URI);
+}else{
+  mongoose.connect("mongodb://localhost/emergency-compliment");
+}
