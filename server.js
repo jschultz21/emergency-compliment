@@ -11,7 +11,7 @@ app.set("port", process.env.PORT || 4000);
 app.set("view engine", "hbs");
 
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ extended: true }));
 
 function getRandomCompliment(compliments){
   var randomIndex = Math.floor((Math.random() * compliments.length));
