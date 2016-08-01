@@ -55,6 +55,12 @@ app.post("/:name", function(req, res){
   })
 });
 
-app.listen(app.get("port"), function(){
-  console.log("we live, son.");
-});
+mongoose.connect(process.env.MONGODB_URI, function(error){
+  if (error) console.error(error);
+  else console.log('connected');
+
+  app.listen(app.get("port"), function(){
+    console.log("we live, son.");
+  });
+
+})
