@@ -13,6 +13,18 @@ app.set("view engine", "hbs");
 app.use(express.static("public"));
 app.use(bodyParser.json({ extended: true }));
 
+
+mongoose.connect(process.env.MONGODB_URI, function(error){
+  if (error) console.error(error);
+  else console.log('connected');
+
+  app.listen(app.get("port"), function(){
+    console.log("we live, son.");
+  });
+
+})
+
+
 function getRandomCompliment(compliments){
   var randomIndex = Math.floor((Math.random() * compliments.length));
   var randomInstance = compliments[randomIndex];
@@ -54,13 +66,3 @@ app.post("/:name", function(req, res){
     res.redirect('/' + req.params.name);
   })
 });
-
-mongoose.connect(process.env.MONGODB_URI, function(error){
-  if (error) console.error(error);
-  else console.log('connected');
-
-  app.listen(app.get("port"), function(){
-    console.log("we live, son.");
-  });
-
-})
