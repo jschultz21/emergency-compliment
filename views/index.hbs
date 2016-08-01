@@ -4,7 +4,14 @@
   }
 </style>
 
-<img src='RG.jpeg'>
+
+{{#if name}}
+<a href="/{{name}}"><img src='RG.jpeg'></a>
+{{else}}
+<a href="/"><img src='RG.jpeg'></a>
+{{/if}}
+
+
 
 {{#if name}}
 <h1>Hey {{name}}, {{compliment}} </h1>
@@ -19,7 +26,9 @@
 </form>
 
 
-<a href="/">regenerate</a><br>
 {{#if name}}
-<a href="/{{name}}/new">submit new RG</a>
+<a href="/{{name}}/new">submit new</a><br>
+<a href="/{{name}}">regenerate</a>
+{{else}}
+<a href="/">regenerate</a><br>
 {{/if}}
