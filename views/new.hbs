@@ -1,19 +1,19 @@
 <style>
-  body {
-    background-color: {{color}};
-  }
+body {
+  background-color: {{color}};
+}
 </style>
 
 <form action="/{{name}}" method="post">
-<h1> Hey girl, </h1>
+  <h1> Hey girl, </h1>
   <textarea rows="7" cols="30" style='font-size: 20px;' type="text" name="compliment[body]"></textarea><br>
   <input type="submit">
 </form>
 
 
 
-  {{#if name}}
-  <a href="/{{name}}">home</a><br>
+{{#if name}}
+<a href="/{{name}}">home</a><br>
 {{else}}
 <a href="/">home</a><br>
 {{/if}}
