@@ -63,22 +63,9 @@ app.post("/:name", function(req, res){
 
   var randomColor = colors.getRandomColor();
   Compliment.create(req.body.compliment).then(function(compliment){
-
     res.redirect('/' + req.params.name);
-
   })
-
 });
-
-
-//
-// ***
-// app.post("/candidates", function(req, res){
-//   Candidate.create(req.body.candidate).then(function(candidate){
-//     res.redirect("/candidates/" + candidate.name);
-//   });
-// });
-// ***
 
 
 app.listen(app.get("port"), function(){
