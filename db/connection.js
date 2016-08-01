@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
-var mongoURI = 'mongodb://localhost/emergency-compliment'
+var mongoURI = "mongodb://localhost/emergency-compliment";
+
 var ComplimentSchema = new mongoose.Schema(
   {
     body: String
@@ -7,7 +8,6 @@ var ComplimentSchema = new mongoose.Schema(
 );
 
 mongoose.model("Compliment", ComplimentSchema);
-
 module.exports = mongoose;
 
 
