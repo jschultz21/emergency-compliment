@@ -1,26 +1,18 @@
 <style>
-  body {
-    background-color: {{color}};
-  }
+  body {background-color: {{color}};}
 </style>
 
 
 {{#if name}}
 <a href="/{{name}}"><img src='RG.jpeg'></a>
-{{else}}
-<a href="/"><img src='RG.jpeg'></a>
-{{/if}}
-
-
-
-{{#if name}}
 <h1>Hey {{name}}, {{compliment}} </h1>
 {{else}}
+<a href="/"><img src='RG.jpeg'></a>
 <h1>Hey girl, {{compliment}}</h1>
 {{/if}}
 
 <form action="/" method="post">
-  <label for="player_name">Hey girl, what's your name?</label><br>
+  <p><label for="player_name">Hey girl, what's your name?</label></p>
   <input id="player_name" type="text" name="player_name">
   <input type="submit">
 </form>

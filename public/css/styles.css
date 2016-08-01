@@ -6,22 +6,22 @@
 }
 body {
   text-align: center;
-  padding: 80px;
+  padding: 40px 80px;
+  padding-bottom: 10px;
 }
 
 h1{
-  font-size: 65px;
+  font-size: 60px;
 }
 
 textarea{
   margin: 10px;
 }
 
-
 img {
   border-radius: 100%;
   border: 8px solid white;
-  width: 350px;
+  width: 320px;
 }
 
 a{
@@ -35,4 +35,8 @@ a:hover{
 }
 a:visited{
   color: white;
+}
+
+footer a{
+  font-size: 14px;
 }
