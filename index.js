@@ -11,18 +11,9 @@ app.set("port", process.env.PORT || 4000);
 app.set("view engine", "hbs");
 
 app.use(express.static("public"));
-app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true })); // handles form submissions
 
 
-mongoose.connect(process.env.MONGODB_URI, function(error){
-  if (error) console.error(error);
-  else console.log('connected');
-
-  app.listen(app.get("port"), function(){
-    console.log("we live, son.");
-  });
-
-})
 
 
 function getRandomCompliment(compliments){
